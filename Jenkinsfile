@@ -1,3 +1,4 @@
+  
 pipeline {
     agent any
     tools {
@@ -16,7 +17,7 @@ pipeline {
                         nexusArtifactUploader artifacts: [
                          [artifactId: 'simple-app', 
                           classifier: '', 
-                          file: "target/simple-app-${pomVersion}.war", 
+                          file: "target/simple-app-${pomVersion.version}.war", 
                           type: 'war']
                      ], 
                          credentialsId: 'nexus3', 
@@ -25,7 +26,7 @@ pipeline {
                          nexusVersion: 'nexus3', 
                          protocol: 'http', 
                          repository: 'jenkins-nexus', 
-                         version: "${pomVersion}"
+                         version: "${pomVersion.version}"
                 }
             }    
         }
