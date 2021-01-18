@@ -27,7 +27,8 @@ pipeline {
                          repository: 'jenkins-nexus', 
                          version: "${pom-version}"
                     }
-                }
+                }    
             }
         }
     }
+}
