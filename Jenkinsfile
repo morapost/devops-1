@@ -12,8 +12,8 @@ pipeline {
         stage('Upload to Nexus repo'){
             steps{
                 script {
-                    def pomVersion = readMavenPom file: 'pom.xml'
-                    nexusArtifactUploader artifacts: [
+                        def pomVersion = readMavenPom file: 'pom.xml'
+                        nexusArtifactUploader artifacts: [
                          [artifactId: 'simple-app', 
                           classifier: '', 
                           file: "target/simple-app-${pomVersion}.war", 
@@ -26,9 +26,8 @@ pipeline {
                          protocol: 'http', 
                          repository: 'jenkins-nexus', 
                          version: "${pomVersion}"
-                    }
-                }    
-            }
+                }
+            }    
         }
     }
 }
