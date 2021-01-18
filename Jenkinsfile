@@ -14,6 +14,7 @@ pipeline {
             steps{
                 script {
                         def pomVersion = readMavenPom file: 'pom.xml'
+                        def nexusRepoName = pomVersion.version.endsWith("SNAPSHOT") ? "jenkins-nexus-snapshot" : "jenkins-nexus"
                         nexusArtifactUploader artifacts: [
                          [artifactId: 'simple-app', 
                           classifier: '', 
@@ -25,7 +26,7 @@ pipeline {
                          nexusUrl: '3.236.21.41:8081', 
                          nexusVersion: 'nexus3', 
                          protocol: 'http', 
-                         repository: 'jenkins-nexus', 
+                          repository: "${nexusRepoName}", 
                          version: "${pomVersion.version}"
                 }
             }    
